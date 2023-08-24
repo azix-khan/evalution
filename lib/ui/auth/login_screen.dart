@@ -1,3 +1,4 @@
+import 'package:evalution/ui/auth/login_with_phone_number.dart';
 import 'package:evalution/ui/auth/signup_screen.dart';
 import 'package:evalution/ui/posts/post_screen.dart';
 import 'package:evalution/utils/utils.dart';
@@ -153,6 +154,26 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: const Text("Sign Up"),
                   ),
                 ],
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginWithPhoneNumber()));
+                },
+                child: Container(
+                  height: 50,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: Colors.black)),
+                  child: const Center(
+                    child: Text('Login with phone number'),
+                  ),
+                ),
               )
             ],
           ),
