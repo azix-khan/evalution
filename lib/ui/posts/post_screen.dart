@@ -35,6 +35,31 @@ class _PostScreenState extends State<PostScreen> {
           ),
         ],
       ),
+      body: const Column(
+        children: [
+          ListTile(
+            leading: Icon(Icons.handshake_outlined),
+            trailing: Icon(Icons.javascript_rounded),
+            title: Text('hahhahaha'),
+            subtitle: Text('blabalbalbahahhablahblahblahblah'),
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.handshake_outlined),
+            trailing: Icon(Icons.javascript_rounded),
+            title: Text('hahhahaha'),
+            subtitle: Text('blabalbalbahahhablahblahblahblah'),
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.handshake_outlined),
+            trailing: Icon(Icons.javascript_rounded),
+            title: Text('hahhahaha'),
+            subtitle: Text('blabalbalbahahhablahblahblahblah'),
+          ),
+          Divider(),
+        ],
+      ),
     );
   }
 }
