@@ -18,6 +18,13 @@ class _PostScreenState extends State<PostScreen> {
   final ref = FirebaseDatabase.instance.ref('Post');
   final searchFilter = TextEditingController();
   final editController = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -120,11 +127,18 @@ class _PostScreenState extends State<PostScreen> {
                                     leading: const Icon(Icons.edit),
                                   ),
                                 ),
-                                const PopupMenuItem(
+                                PopupMenuItem(
                                   value: 1,
                                   child: ListTile(
-                                    title: Text('Delete'),
-                                    leading: Icon(Icons.delete),
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                      ShowMyDialogForDelete(snapshot
+                                          .child('id')
+                                          .value
+                                          .toString());
+                                    },
+                                    title: const Text('Delete'),
+                                    leading: const Icon(Icons.delete),
                                   ),
                                 ),
                               ]),
@@ -177,6 +191,36 @@ class _PostScreenState extends State<PostScreen> {
                   });
                 },
                 child: const Text('Update'),
+              ),
+            ],
+          );
+        });
+  }
+
+  Future<void> ShowMyDialogForDelete(String id) async {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Delete'),
+            content: const Text('Do you really want to delete this post?'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('Cancel'),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  ref.child(id).remove().then((value) {
+                    Utils().toastMessage('Post Deleted');
+                  }).onError((error, stackTrace) {
+                    Utils().toastMessage(error.toString());
+                  });
+                },
+                child: const Text('Delete'),
               ),
             ],
           );
